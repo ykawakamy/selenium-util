@@ -28,11 +28,11 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class SeleniumUtils {
     
-    private static final String PREFIX = "selenium-util.";
-    static Properties prop;
+    private static final String PREFIX = "selenium-utils.";
+    static Properties prop = new Properties();
     static {
         try {
-            InputStream is = SeleniumUtils.class.getResourceAsStream("selenium-util.properties");
+            InputStream is = SeleniumUtils.class.getResourceAsStream("/selenium-util.properties");
             if( is != null )
                 prop.load(is);
         } catch (IOException e) {
@@ -84,7 +84,7 @@ public class SeleniumUtils {
         return driver;
     }
     
-    private static String getProperty(String key) {
+    public static String getProperty(String key) {
         String val = System.getProperty(key);
         if(val == null) {
             return prop.getProperty(PREFIX + key);
@@ -92,7 +92,7 @@ public class SeleniumUtils {
         return val;
     }
     
-    private static int getPropertyInt(String key) {
+    public static int getPropertyInt(String key) {
         return Integer.parseInt(getProperty(key));
     }
 }
